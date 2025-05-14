@@ -1,3 +1,4 @@
+import css from "./Book.module.css"
 interface Book {
     id: string;
     name: string;
@@ -12,10 +13,10 @@ interface Book {
   export default function Book() {
     return (
       <>
-        <h1>Books of the week</h1>
+        <h1 className={css.title}>Books of the week</h1>
         <ul>
           {books.map((book) => (
-            <li key={book.id}>{book.name}</li>
+            <li className={css.paragraph} key={book.id}>{book.name}</li>
           ))}
         </ul>
       </>
