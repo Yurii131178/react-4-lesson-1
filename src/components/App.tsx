@@ -8,12 +8,11 @@ import Title from './Title';
 import Button from './Button';
 import UserMenu from './UserMenu';
 // 1. Імпортуємо функцію useState
+
 import { useState } from 'react';
 import ClickCounter from './clickCounter';
 // підняття стану
 import LiftStateUpCounter from './LiftStateUpCounter';
-
-
 
 export default function App() {
   const handleFirstClick = () => {
@@ -26,14 +25,14 @@ export default function App() {
   };
 
   //let clicks = 0;
-  // 2. Оголошуємо стан clicks 
+  // 2. Оголошуємо стан clicks
   const [clicks, setClicks] = useState(0);
 
   const handleCountClick = () => {
     // clicks = clicks + 1;
     // 3. Використовуємо setClicks для зміни стану clicks
     setClicks(clicks + 1);
-    console.log(clicks);    
+    console.log(clicks);
   };
 
   const [count, setCount] = useState(0);
@@ -43,7 +42,7 @@ export default function App() {
   // підняття стану
   const handleClick = () => {
     setClicks(clicks + 1);
-  }   
+  };
   //Декілька станів
   const [count1, setCount1] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -64,16 +63,16 @@ export default function App() {
     z: number;
   }
 
-  const [values, setValues] = useState<Values>({x: 0, y: 0, z: 0});
-   
+  const [values, setValues] = useState<Values>({ x: 0, y: 0, z: 0 });
+
   // const updateX = () => {};
   // const updateY = () => {};
 
-    //   const updateX = () => {
-    // 	// ❌ Це мутація, так не можна
-    //   values.x += 1;
-    // };
-   //Завжди створюйте новий об’єкт і використовуйте оператор spread (...) для оновлення стану через setValues. Інакше ви випадково видалите інші поля, наприклад, y.
+  //   const updateX = () => {
+  // 	// ❌ Це мутація, так не можна
+  //   values.x += 1;
+  // };
+  //Завжди створюйте новий об’єкт і використовуйте оператор spread (...) для оновлення стану через setValues. Інакше ви випадково видалите інші поля, наприклад, y.
   // ✅ Оновлюємо лише x, зберігаючи y
 
   // const updateX = () => {
@@ -94,11 +93,11 @@ export default function App() {
 
   const updateValue = (key: keyof Values) => {
     setValues({
-      ...values, 
+      ...values,
       [key]: values[key] + 1,
     });
   };
-  
+
   return (
     <>
       <br />
@@ -123,51 +122,61 @@ export default function App() {
       <button onClick={() => setCount(count - 1)}>Decrease</button>
 
       <br />
-      <p>Стан: {isOn ? "Включено" : "Вимкнено"}</p>
+      <p>Стан: {isOn ? 'Включено' : 'Вимкнено'}</p>
       <button onClick={() => setIsOn(!isOn)}>
-        {isOn ? "Вимкнути" : "Включити"}
+        {isOn ? 'Вимкнути' : 'Включити'}
       </button>
       <br />
       <br />
-      <ClickCounter/>
-      <ClickCounter/>
-      <ClickCounter/>
+      <ClickCounter />
+      <ClickCounter />
+      <ClickCounter />
       <br />
       <br />
 
-      <LiftStateUpCounter value={clicks} onUpdate={handleClick}/>
-      <LiftStateUpCounter value={clicks} onUpdate={handleClick}/>
-      <LiftStateUpCounter value={clicks} onUpdate={handleClick}/>
+      <LiftStateUpCounter value={clicks} onUpdate={handleClick} />
+      <LiftStateUpCounter value={clicks} onUpdate={handleClick} />
+      <LiftStateUpCounter value={clicks} onUpdate={handleClick} />
       <br />
       <br />
 
-      <button 
-      style={{backgroundColor: "green", marginRight: "5px"}} 
-      onClick={handleClick1}>Clicked: {count1}</button>
+      <button
+        style={{ backgroundColor: 'green', marginRight: '5px' }}
+        onClick={handleClick1}
+      >
+        Clicked: {count1}
+      </button>
 
-      <button 
-      style={{backgroundColor: "green"}} 
-      onClick={toggleMessage1}>{isOpen ? "Hide message" : "Show message"}
+      <button style={{ backgroundColor: 'green' }} onClick={toggleMessage1}>
+        {isOpen ? 'Hide message' : 'Show message'}
       </button>
       {isOpen && <p>🎉 Surprise! You toggled me.</p>}
 
       <div>
-        <p>x: {values.x}  y: {values.y} z: {values.z} </p>
-        <button 
-        style={{marginRight: "10px", backgroundColor: "indigo"}} onClick={() => updateValue('x')}>Update x</button>
+        <p>
+          x: {values.x} y: {values.y} z: {values.z}{' '}
+        </p>
+        <button
+          style={{ marginRight: '10px', backgroundColor: 'indigo' }}
+          onClick={() => updateValue('x')}
+        >
+          Update x
+        </button>
 
-        <button 
-        style={{marginRight: "10px", backgroundColor: "indigo"}} 
-        onClick={() => updateValue('y') }>Update y</button>
+        <button
+          style={{ marginRight: '10px', backgroundColor: 'indigo' }}
+          onClick={() => updateValue('y')}
+        >
+          Update y
+        </button>
 
-        <button 
-        style={{marginRight: "10px", backgroundColor: "indigo"}}
-        onClick={() => updateValue('z')} >Update z</button>
+        <button
+          style={{ marginRight: '10px', backgroundColor: 'indigo' }}
+          onClick={() => updateValue('z')}
+        >
+          Update z
+        </button>
       </div>
-
-
-
-
 
       <h1>Best selling</h1>
       <Product
@@ -601,7 +610,7 @@ export default function App() {
 
 // - State завжди локальний, якщо не підняти вище.
 // - Якщо кілька компонентів повинні працювати зі спільними даними – піднімайте стан у спільного батька.
-// - Передавайте дані та функції зміни стану через props.  
+// - Передавайте дані та функції зміни стану через props.
 
 /**====================Декілька станів======================//
 React-компонент може мати скільки завгодно незалежних станів. Для кожної "частинки" даних використовуйте окремий useState. */
@@ -636,10 +645,7 @@ export default function App() {
 }
  */
 
-
 // Так не потрібно дублювати код, і він стає компактнішим і масштабованим (наприклад, якщо з’явиться поле z, не доведеться нічого переписувати)
-
-
 
 // Що тут відбувається:
 
@@ -647,15 +653,10 @@ export default function App() {
 // values[key] + 1 – читає поточне значення поля.
 // [key]: ... – оновлює лише це поле, не чіпаючи інші.
 
-
 // Тепер, коли ми зробили універсальну функцію updateValue, яка приймає ім’я поля ("x" або "y"), можемо викликати її з різними аргументами – напряму в JSX:
-
-
 
 // <button onClick={() => updateValue("x")}>Update x</button>
 // <button onClick={() => updateValue("y")}>Update y</button>
-
-
 
 // Це чисто, компактно і масштабовано. Якщо згодом з’явиться поле z, вам не потрібно буде переписувати всю логіку – достатньо просто викликати updateValue("z").
 
